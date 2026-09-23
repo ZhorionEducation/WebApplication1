@@ -1,0 +1,178 @@
+﻿@model WebApplication1.Models.Usuario
+
+@{
+    ViewData["Title"] = "Realizar Préstamo";
+}
+
+<div class="container mt-4">
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-7">
+
+            <div class="card shadow-sm border-0">
+
+                <!-- Encabezado -->
+                <div class="card-header bg-success text-white py-3">
+                    <h3 class="mb-0">
+                        <i class="bi bi-book-half me-2"></i>
+                        Realizar Préstamo
+                    </h3>
+                    
+                    <small>
+                        Selecciona el libro que deseas prestar al usuario
+                    </small>
+                </div>
+
+                <div class="card-body p-4">
+
+                    <!-- Información del usuario -->
+                    <h5 class="mb-3">
+                        <i class="bi bi-person-vcard me-2"></i>
+                        Información del usuario
+                    </h5>
+
+                    <div class="card bg-light border-0 mb-4">
+                        <div class="card-body">
+
+                            <div class="row mb-3">
+                                <div class="col-sm-4 fw-semibold">
+                                    <i class="bi bi-person me-2"></i>
+                                    Nombre
+                                </div>
+
+                                <div class="col-sm-8">
+                                    @Model.Nombre
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-sm-4 fw-semibold">
+                                    <i class="bi bi-card-text me-2"></i>
+                                    Documento
+                                </div>
+
+                                <div class="col-sm-8">
+                                    @Model.Documento
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-sm-4 fw-semibold">
+                                    <i class="bi bi-envelope me-2"></i>
+                                    Correo
+                                </div>
+
+                                <div class="col-sm-8">
+                                    @Model.Correo
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-4 fw-semibold">
+                                    <i class="bi bi-credit-card me-2"></i>
+                                    Tarjeta disponible
+                                </div>
+
+                                <div class="col-sm-8">
+                                    @if (Model.TarjetaPrestamo)
+                                    {
+                                        <span class="badge bg-success">
+                                            <i class="bi bi-check-circle me-1"></i>
+                                            Sí, disponible
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-danger">
+                                            <i class="bi bi-x-circle me-1"></i>
+                                            No disponible
+                                        </span>
+                                    }
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Formulario -->
+                    <form asp-action="Prestar" method="post">
+
+                        @Html.AntiForgeryToken()
+
+                        <input type="hidden" name="id" value="@Model.Id" />
+
+                        <!-- ERRORES -->
+                        @if (!ViewData.ModelState.IsValid)
+                        {
+                            <div asp-validation-summary="All"
+                                 class="alert alert-danger"
+                                 role="alert">
+                                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                                <strong>No se pudo realizar el préstamo.</strong>
+                            </div>
+                        }
+
+                        <!-- Selección del libro -->
+                        <h5 class="mb-3">
+                            <i class="bi bi-book me-2"></i>
+                            Seleccionar libro
+                        </h5>
+
+                        <div class="mb-4">
+
+                            <label for="libroId" class="form-label fw-semibold">
+                                <i class="bi bi-journal-bookmark me-1"></i>
+                                Libro
+                            </label>
+
+                            <select id="libroId"
+                                    name="libroId"
+                                    class="form-select"
+                                    asp-items="ViewBag.Libros">
+
+                                <option value="">
+                                    -- Seleccione un libro --
+                                </option>
+
+                            </select>
+
+                            <span asp-validation-for="LibroId"
+                                  class="text-danger small"></span>
+
+                            <div class="form-text">
+                                Selecciona el libro que será prestado a este usuario.
+                            </div>
+
+                        </div>
+
+                        <!-- Botones -->
+                        <div class="d-flex justify-content-between">
+
+                            <a asp-action="Index"
+                               class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left me-1"></i>
+                                Volver
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-success">
+                                <i class="bi bi-bookmark-check me-1"></i>
+                                Realizar préstamo
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
+

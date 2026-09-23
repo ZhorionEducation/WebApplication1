@@ -1,0 +1,133 @@
+@model WebApplication1.Models.Usuario
+
+@{
+    ViewData["Title"] = "Nuevo Usuario";
+}
+
+<div class="container mt-4">
+
+    <div class="row justify-content-center">
+        <div class="col-md-7 col-lg-6">
+
+            <div class="card shadow-sm border-0">
+
+                <!-- Encabezado -->
+                <div class="card-header bg-primary text-white py-3">
+                    <h3 class="mb-0">
+                        <i class="bi bi-person-plus me-2"></i>
+                        Nuevo Usuario
+                    </h3>
+                    <small>Registra un nuevo usuario en el sistema</small>
+                </div>
+
+                <div class="card-body p-4">
+
+                    <form asp-action="Create">
+
+                        <div asp-validation-summary="ModelOnly"
+                             class="alert alert-danger"
+                             role="alert"></div>
+
+                        <!-- Nombre -->
+                        <div class="mb-3">
+                            <label asp-for="Nombre" class="form-label fw-semibold">
+                                <i class="bi bi-person me-1"></i>
+                                Nombre
+                            </label>
+
+                            <input asp-for="Nombre"
+                                   class="form-control"
+                                   placeholder="Ingrese el nombre completo" />
+
+                            <span asp-validation-for="Nombre"
+                                  class="text-danger small"></span>
+                        </div>
+
+                        <!-- Documento -->
+                        <div class="mb-3">
+                            <label asp-for="Documento" class="form-label fw-semibold">
+                                <i class="bi bi-card-text me-1"></i>
+                                Documento
+                            </label>
+
+                            <input asp-for="Documento"
+                                   class="form-control"
+                                   placeholder="Ingrese el número de documento" />
+
+                            <span asp-validation-for="Documento"
+                                  class="text-danger small"></span>
+                        </div>
+
+                        <!-- Correo -->
+                        <div class="mb-3">
+                            <label asp-for="Correo" class="form-label fw-semibold">
+                                <i class="bi bi-envelope me-1"></i>
+                                Correo electrónico
+                            </label>
+
+                            <input asp-for="Correo"
+                                   type="email"
+                                   class="form-control"
+                                   placeholder="ejemplo@correo.com" />
+
+                            <span asp-validation-for="Correo"
+                                  class="text-danger small"></span>
+                        </div>
+
+                        <!-- Tarjeta de préstamo -->
+                        <div class="card bg-light border-0 mb-4">
+                            <div class="card-body">
+
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input"
+                                           asp-for="TarjetaPrestamo"
+                                           role="switch" />
+
+                                    <label class="form-check-label fw-semibold"
+                                           asp-for="TarjetaPrestamo">
+                                        <i class="bi bi-credit-card me-1"></i>
+                                        Tarjeta de préstamo
+                                    </label>
+                                </div>
+
+                                <small class="text-muted">
+                                    Indica si el usuario tiene habilitada la tarjeta
+                                    para realizar préstamos.
+                                </small>
+
+                            </div>
+                        </div>
+
+                        <!-- Botones -->
+                        <div class="d-flex justify-content-between">
+
+                            <a asp-action="Index"
+                               class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left me-1"></i>
+                                Volver
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-primary">
+                                <i class="bi bi-person-plus me-1"></i>
+                                Crear usuario
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

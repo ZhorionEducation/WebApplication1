@@ -1,0 +1,201 @@
+@model WebApplication1.Models.Libro
+
+@{
+    ViewData["Title"] = "Editar Libro";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7 col-lg-6">
+
+            <div class="card shadow border-0 rounded-4">
+
+                <!-- Encabezado -->
+                <div class="card-header bg-primary text-white text-center py-4 rounded-top-4">
+
+                    <div class="mb-2">
+                        <i class="bi bi-pencil-square"
+                           style="font-size: 3.5rem;"></i>
+                    </div>
+
+                    <h2 class="mb-1">
+                        Editar Libro
+                    </h2>
+
+                    <p class="mb-0 opacity-75">
+                        Actualiza la información del libro
+                    </p>
+
+                </div>
+
+                <!-- Formulario -->
+                <div class="card-body p-4">
+
+                    <form asp-action="Edit" method="post">
+
+                        <div asp-validation-summary="ModelOnly"
+                             class="alert alert-danger"
+                             role="alert"></div>
+
+                        <input type="hidden" asp-for="Id" />
+
+                        <!-- Título -->
+                        <div class="mb-3">
+
+                            <label asp-for="Titulo"
+                                   class="form-label fw-semibold">
+                                Título del libro
+                            </label>
+
+                            <div class="input-group">
+
+                                <span class="input-group-text bg-light">
+                                    <i class="bi bi-book-fill"></i>
+                                </span>
+
+                                <input asp-for="Titulo"
+                                       class="form-control"
+                                       placeholder="Ingrese el título del libro" />
+
+                            </div>
+
+                            <span asp-validation-for="Titulo"
+                                  class="text-danger small"></span>
+
+                        </div>
+
+                        <!-- Autor -->
+                        <div class="mb-3">
+
+                            <label asp-for="AutorId"
+                                   class="form-label fw-semibold">
+                                Autor
+                            </label>
+
+                            <div class="input-group">
+
+                                <span class="input-group-text bg-light">
+                                    <i class="bi bi-person-fill"></i>
+                                </span>
+
+                                <select asp-for="AutorId"
+                                        class="form-select"
+                                        asp-items="ViewBag.AutorId">
+
+                                    <option value="">
+                                        -- Seleccione un autor --
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <span asp-validation-for="AutorId"
+                                  class="text-danger small"></span>
+
+                        </div>
+
+                        <!-- Categoría -->
+                        <div class="mb-3">
+
+                            <label asp-for="CategoriaId"
+                                   class="form-label fw-semibold">
+                                Categoría
+                            </label>
+
+                            <div class="input-group">
+
+                                <span class="input-group-text bg-light">
+                                    <i class="bi bi-tags-fill"></i>
+                                </span>
+
+                                <select asp-for="CategoriaId"
+                                        class="form-select"
+                                        asp-items="ViewBag.CategoriaId">
+
+                                    <option value="">
+                                        -- Seleccione una categoría --
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <span asp-validation-for="CategoriaId"
+                                  class="text-danger small"></span>
+
+                        </div>
+
+                        <!-- Estado -->
+                        <div class="mb-4">
+
+                            <div class="card border">
+
+                                <div class="card-body py-3">
+
+                                    <div class="form-check form-switch">
+
+                                        <input asp-for="Prestado"
+                                               class="form-check-input"
+                                               role="switch"
+                                               style="transform: scale(1.2);" />
+
+                                        <label asp-for="Prestado"
+                                               class="form-check-label fw-semibold ms-2">
+                                            Libro prestado
+                                        </label>
+
+                                    </div>
+
+                                    <small class="text-muted ms-4">
+                                        Activa esta opción si el libro se encuentra prestado.
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                            <span asp-validation-for="Prestado"
+                                  class="text-danger small"></span>
+
+                        </div>
+
+                        <hr class="my-4" />
+
+                        <!-- Botones -->
+                        <div class="d-flex justify-content-between gap-2">
+
+                            <a asp-action="Index"
+                               class="btn btn-outline-secondary">
+
+                                <i class="bi bi-arrow-left"></i>
+                                Cancelar
+
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-primary px-4">
+
+                                <i class="bi bi-check-lg"></i>
+                                Guardar cambios
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,139 @@
+@model WebApplication1.Models.Usuario
+
+@{
+    ViewData["Title"] = "Eliminar Usuario";
+}
+
+<div class="container mt-4">
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-7">
+
+            <div class="card shadow-sm border-0">
+
+                <!-- Encabezado -->
+                <div class="card-header bg-danger text-white py-3">
+                    <h3 class="mb-0">
+                        <i class="bi bi-person-x me-2"></i>
+                        Eliminar Usuario
+                    </h3>
+                    <small>Confirma la eliminación del usuario</small>
+                </div>
+
+                <div class="card-body p-4">
+
+                    <!-- Advertencia -->
+                    <div class="alert alert-warning d-flex align-items-center" role="alert">
+                        <i class="bi bi-exclamation-triangle-fill fs-4 me-3"></i>
+
+                        <div>
+                            <strong>¿Estás seguro?</strong>
+                            <br />
+                            Esta acción eliminará permanentemente este usuario.
+                        </div>
+                    </div>
+
+                    <!-- Información del usuario -->
+                    <h5 class="mb-3">
+                        <i class="bi bi-person-vcard me-2"></i>
+                        Información del usuario
+                    </h5>
+
+                    <div class="card bg-light border-0 mb-4">
+                        <div class="card-body">
+
+                            <!-- Nombre -->
+                            <div class="row mb-3">
+                                <div class="col-sm-4 fw-semibold">
+                                    <i class="bi bi-person me-2"></i>
+                                    Nombre
+                                </div>
+
+                                <div class="col-sm-8">
+                                    @Html.DisplayFor(model => model.Nombre)
+                                </div>
+                            </div>
+
+                            <!-- Documento -->
+                            <div class="row mb-3">
+                                <div class="col-sm-4 fw-semibold">
+                                    <i class="bi bi-card-text me-2"></i>
+                                    Documento
+                                </div>
+
+                                <div class="col-sm-8">
+                                    @Html.DisplayFor(model => model.Documento)
+                                </div>
+                            </div>
+
+                            <!-- Correo -->
+                            <div class="row mb-3">
+                                <div class="col-sm-4 fw-semibold">
+                                    <i class="bi bi-envelope me-2"></i>
+                                    Correo
+                                </div>
+
+                                <div class="col-sm-8">
+                                    @Html.DisplayFor(model => model.Correo)
+                                </div>
+                            </div>
+
+                            <!-- Tarjeta de préstamo -->
+                            <div class="row">
+                                <div class="col-sm-4 fw-semibold">
+                                    <i class="bi bi-credit-card me-2"></i>
+                                    Tarjeta de préstamo
+                                </div>
+
+                                <div class="col-sm-8">
+                                    @if (Model.TarjetaPrestamo)
+                                    {
+                                        <span class="badge bg-success">
+                                            <i class="bi bi-check-circle me-1"></i>
+                                            Habilitada
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">
+                                            <i class="bi bi-x-circle me-1"></i>
+                                            No habilitada
+                                        </span>
+                                    }
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Botones -->
+                    <form asp-action="Delete" method="post">
+
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="d-flex justify-content-between">
+
+                            <a asp-action="Index"
+                               class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left me-1"></i>
+                                Cancelar
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-danger">
+                                <i class="bi bi-trash me-1"></i>
+                                Eliminar usuario
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+

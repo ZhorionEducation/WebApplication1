@@ -1,0 +1,87 @@
+@model WebApplication1.Models.Autor
+
+@{
+    ViewData["Title"] = "Detalles del Autor";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow border-0 rounded-4">
+
+                <!-- Encabezado -->
+                <div class="card-header bg-primary text-white text-center py-4 rounded-top-4">
+                    <div class="mb-2">
+                        <i class="bi bi-person-circle"
+                           style="font-size: 3.5rem;"></i>
+                    </div>
+
+                    <h2 class="mb-1">
+                        Detalles del Autor
+                    </h2>
+
+                    <p class="mb-0 opacity-75">
+                        Información del autor registrado
+                    </p>
+                </div>
+
+                <!-- Información -->
+                <div class="card-body p-4">
+
+                    <div class="text-center mb-4">
+                        <span class="badge bg-secondary px-3 py-2">
+                            <i class="bi bi-person-fill"></i>
+                            Autor
+                        </span>
+                    </div>
+
+                    <div class="border rounded-3 p-3 bg-light">
+
+                        <div class="d-flex align-items-center">
+
+                            <div class="me-3">
+                                <i class="bi bi-person text-primary"
+                                   style="font-size: 2rem;"></i>
+                            </div>
+
+                            <div>
+                                <small class="text-muted d-block">
+                                    @Html.DisplayNameFor(model => model.Nombre)
+                                </small>
+
+                                <h5 class="mb-0 fw-bold">
+                                    @Html.DisplayFor(model => model.Nombre)
+                                </h5>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <hr class="my-4" />
+
+                    <!-- Botones -->
+                    <div class="d-flex justify-content-between gap-2">
+
+                        <a asp-action="Index"
+                           class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left"></i>
+                            Volver
+                        </a>
+
+                        <a asp-action="Edit"
+                           asp-route-id="@Model?.Id"
+                           class="btn btn-primary px-4">
+                            <i class="bi bi-pencil-fill"></i>
+                            Editar
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,174 @@
+@model WebApplication1.Models.Libro
+
+@{
+    ViewData["Title"] = "Detalles del Libro";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7 col-lg-6">
+
+            <div class="card shadow border-0 rounded-4">
+
+                <!-- Encabezado -->
+                <div class="card-header bg-primary text-white text-center py-4 rounded-top-4">
+
+                    <div class="mb-2">
+                        <i class="bi bi-book-fill"
+                           style="font-size: 3.5rem;"></i>
+                    </div>
+
+                    <h2 class="mb-1">
+                        Detalles del Libro
+                    </h2>
+
+                    <p class="mb-0 opacity-75">
+                        Información del libro registrado
+                    </p>
+
+                </div>
+
+                <!-- Contenido -->
+                <div class="card-body p-4">
+
+                    <!-- Título -->
+                    <div class="text-center mb-4">
+
+                        <span class="badge bg-secondary px-3 py-2 mb-3">
+                            <i class="bi bi-book-fill"></i>
+                            Libro
+                        </span>
+
+                        <h2 class="fw-bold">
+                            @Html.DisplayFor(model => model.Titulo)
+                        </h2>
+
+                    </div>
+
+                    <!-- Información -->
+                    <div class="border rounded-3 p-3 bg-light">
+
+                        <!-- Autor -->
+                        <div class="d-flex align-items-center mb-3">
+
+                            <div class="me-3">
+                                <i class="bi bi-person-fill text-primary"
+                                   style="font-size: 1.8rem;"></i>
+                            </div>
+
+                            <div>
+                                <small class="text-muted d-block">
+                                    Autor
+                                </small>
+
+                                <span class="fw-semibold">
+                                    @if (Model.Autor != null)
+                                    {
+                                        @Model.Autor.Nombre
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">
+                                            Sin autor
+                                        </span>
+                                    }
+                                </span>
+                            </div>
+
+                        </div>
+
+                        <!-- Categoría -->
+                        <div class="d-flex align-items-center mb-3">
+
+                            <div class="me-3">
+                                <i class="bi bi-tags-fill text-primary"
+                                   style="font-size: 1.8rem;"></i>
+                            </div>
+
+                            <div>
+                                <small class="text-muted d-block">
+                                    Categoría
+                                </small>
+
+                                <span class="fw-semibold">
+                                    @if (Model.Categoria != null)
+                                    {
+                                        @Model.Categoria.Nombre
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">
+                                            Sin categoría
+                                        </span>
+                                    }
+                                </span>
+                            </div>
+
+                        </div>
+
+                        <!-- Estado -->
+                        <div class="d-flex align-items-center">
+
+                            <div class="me-3">
+                                <i class="bi bi-arrow-left-right text-primary"
+                                   style="font-size: 1.8rem;"></i>
+                            </div>
+
+                            <div>
+                                <small class="text-muted d-block">
+                                    Estado
+                                </small>
+
+                                @if (Model.Prestado)
+                                {
+                                    <span class="badge bg-warning text-dark">
+                                        <i class="bi bi-clock-fill"></i>
+                                        Prestado
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-success">
+                                        <i class="bi bi-check-circle-fill"></i>
+                                        Disponible
+                                    </span>
+                                }
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <hr class="my-4" />
+
+                    <!-- Botones -->
+                    <div class="d-flex justify-content-between gap-2">
+
+                        <a asp-action="Index"
+                           class="btn btn-outline-secondary">
+
+                            <i class="bi bi-arrow-left"></i>
+                            Volver
+
+                        </a>
+
+                        <a asp-action="Edit"
+                           asp-route-id="@Model?.Id"
+                           class="btn btn-primary px-4">
+
+                            <i class="bi bi-pencil-fill"></i>
+                            Editar
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>

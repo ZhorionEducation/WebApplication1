@@ -1,0 +1,83 @@
+@model WebApplication1.Models.Autor
+
+@{
+    ViewData["Title"] = "Eliminar Autor";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+
+            <div class="card shadow border-0 rounded-4">
+
+                <!-- Encabezado -->
+                <div class="card-header bg-danger text-white text-center py-4 rounded-top-4">
+                    <h2 class="mb-1">
+                        <i class="bi bi-exclamation-triangle-fill"></i>
+                        Eliminar Autor
+                    </h2>
+                    <p class="mb-0 opacity-75">
+                        Esta acción no se puede deshacer
+                    </p>
+                </div>
+
+                <!-- Contenido -->
+                <div class="card-body p-4">
+
+                    <div class="alert alert-warning d-flex align-items-center"
+                         role="alert">
+                        <i class="bi bi-exclamation-circle-fill me-2"></i>
+                        <div>
+                            ¿Está seguro de que desea eliminar este autor?
+                        </div>
+                    </div>
+
+                    <div class="text-center py-3">
+
+                        <div class="mb-3">
+                            <i class="bi bi-person-circle text-secondary"
+                               style="font-size: 4rem;"></i>
+                        </div>
+
+                        <h5 class="text-muted mb-2">
+                            Nombre del autor
+                        </h5>
+
+                        <h3 class="fw-bold">
+                            @Html.DisplayFor(model => model.Nombre)
+                        </h3>
+
+                    </div>
+
+                    <hr />
+
+                    <!-- Botones -->
+                    <form asp-action="Delete" method="post">
+
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="d-flex justify-content-between gap-2">
+
+                            <a asp-action="Index"
+                               class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left"></i>
+                                Cancelar
+                            </a>
+
+                            <button type="submit"
+                                    class="btn btn-danger px-4">
+                                <i class="bi bi-trash3-fill"></i>
+                                Eliminar Autor
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
